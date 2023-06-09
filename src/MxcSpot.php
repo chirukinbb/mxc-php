@@ -6,7 +6,8 @@
 namespace Lin\Mxc;
 
 
-use Lin\Mxc\Api\Spot\Accounts;
+use Lin\Mxc\Api\Contract\Account;
+use Lin\Mxc\Api\Spot\Wallet;
 use Lin\Mxc\Api\Spot\Market;
 use Lin\Mxc\Api\Spot\Orders;
 use Lin\Mxc\Api\Spot\Common;
@@ -52,8 +53,23 @@ class MxcSpot
     /**
      *
      * */
+    function clearOption(string $name){
+        if (isset($this->options[$name]))
+            unset($this->options[$name]);
+    }
+
+    /**
+     *
+     * */
     public function account(){
-        return  new Accounts($this->init());
+        return  new Account($this->init());
+    }
+
+    /**
+     *
+     * */
+    public function wallet(){
+        return  new Wallet($this->init());
     }
 
     /**
